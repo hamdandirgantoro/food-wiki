@@ -1,11 +1,17 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import Navbar from "./components/navbar";
+import Lineicons from "@lineiconshq/react-lineicons";
+import {
+  Flag1Solid,
+  Flag2Solid,
+  Globe1Solid,
+  Sun1Solid,
+} from "@lineiconshq/free-icons";
 
 function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [data, setData] = useState(null);
   const [searchData, setSearchData] = useState("");
   let prevTimer: any = null;
   function handleSearch(event: any) {
@@ -37,7 +43,7 @@ function App() {
     return () => clearTimeout(prevTimer);
   }
   useEffect(() => {
-    fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata")
+    fetch("https://www.themealdb.com/api/json/v1/1/search.php?s=")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -45,7 +51,7 @@ function App() {
         return response.json(); // Parse JSON
       })
       .then((data) => {
-        setData(data);
+        setSearchData(data);
         setLoading(false);
       })
       .catch((error) => {
@@ -60,11 +66,17 @@ function App() {
     <main>
       <div className="nav-container">
         <Navbar />
-        <input className="search-bar" type="search" onInput={handleSearch} placeholder="food name"/>
+        <input
+          className="search-bar"
+          type="search"
+          onInput={handleSearch}
+          placeholder="food name"
+        />
+        <div className="third-part">
+          <Lineicons icon={Sun1Solid} />
+          <Lineicons icon={Globe1Solid} />
+        </div>
       </div>
-      {/* <div>hello welcome</div> */}
-      {/* <div>this is a wiki for food</div> */}
-      {/* <div>feel free to look around !</div> */}
       {searchData.meals ? (
         <div className="item-list">
           {searchData.meals.map((items: object) => {
@@ -81,7 +93,7 @@ function App() {
           })}
         </div>
       ) : (
-        <img src={data.meals[0].strMealThumb} alt="food" height={200} />
+        <div>no food is found</div>
       )}
     </main>
   );

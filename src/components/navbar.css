@@ -11,3 +11,17 @@
 	font-size: 18px;
 	font-family: 'Poppins', sans-serif;
 }
+
+nav button,
+nav button:active,
+nav button:focus,
+nav button:hover {
+	all: unset;
+	display: inline-block;
+	cursor: pointer;
+	height: 100%;
+	margin-left: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}

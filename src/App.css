@@ -1,15 +1,11 @@
-::-webkit-scrollbar {
-	/* display: none; */
-}
-
 body {
-	/* background-color: white; */
 	background-image: url("/src/assets/bg.jpg");
 	color: black;
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
 }
+
 
 main {
 	min-height: 100vh;
@@ -81,4 +77,37 @@ main {
 
 .food-name {
 	font-weight: bold;
+}
+
+@media all and (min-width:500px) {
+	.item-list {
+		display: grid;
+		grid-template-columns: auto auto auto auto;
+		width: 98.9vw;
+		row-gap: 30px;
+		align-items: center;
+		justify-items: center;
+	}
+
+	.nav-container {
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+	}
+
+	.third-part {
+		display: flex;
+		align-items: center;
+		justify-content: end;
+		padding-right: 10px;
+		gap: 20px;
+	}
+
+	.search-bar {
+		margin: 5px;
+		margin-left: 0px;
+	}
+
+	#navbar {
+		width: fit-content;
+	}
 }
