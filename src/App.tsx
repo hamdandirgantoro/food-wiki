@@ -2,18 +2,25 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Navbar from "./components/navbar";
 import Lineicons from "@lineiconshq/react-lineicons";
-import {
-  Flag1Solid,
-  Flag2Solid,
-  Globe1Solid,
-  Sun1Solid,
-} from "@lineiconshq/free-icons";
+import { Globe1Solid, Sun1Solid } from "@lineiconshq/free-icons";
+import Sidebar from "./components/sidebar";
+import { useSidebar } from "./components/context-providers/sidebar";
 
+interface Meal {
+  strMeal: string;
+  strMealThumb: string;
+}
+interface SearchData {
+  meals: Meal[] | null;
+}
 function App() {
+  const { sidebar } = useSidebar();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [searchData, setSearchData] = useState("");
+  const [searchData, setSearchData] = useState<SearchData>({ meals: null });
   let prevTimer: any = null;
+  function handleChangeTheme() {}
+  function handleChangeLanguage() {}
   function handleSearch(event: any) {
     prevTimer && clearTimeout(prevTimer);
     prevTimer = setTimeout(() => {
@@ -35,10 +42,6 @@ function App() {
           setError(error.message);
           setLoading(false);
         });
-      searchData.meals.forEach((num: any) => {
-        console.log(num);
-      });
-      // setSearchData(event.target.value);
     }, 1000);
     return () => clearTimeout(prevTimer);
   }
@@ -73,13 +76,20 @@ function App() {
           placeholder="food name"
         />
         <div className="third-part">
-          <Lineicons icon={Sun1Solid} />
-          <Lineicons icon={Globe1Solid} />
+          <button title="Change Theme" onClick={handleChangeTheme}>
+            <Lineicons icon={Sun1Solid} />
+          </button>
+          <button title="Change Language" onClick={handleChangeLanguage}>
+            <Lineicons icon={Globe1Solid} />
+          </button>
         </div>
+      </div>
+      <div className="sidebar-container" style={{ display: sidebar }}>
+        <Sidebar />
       </div>
       {searchData.meals ? (
         <div className="item-list">
-          {searchData.meals.map((items: object) => {
+          {searchData.meals.map((items: Meal) => {
             return (
               <div className="food-container">
                 <div className="food-name">{items.strMeal}</div>

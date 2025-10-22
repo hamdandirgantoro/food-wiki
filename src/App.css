@@ -4,6 +4,7 @@ body {
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
+	scroll-behavior: smooth;
 }
 
 
@@ -64,7 +65,6 @@ main {
 	width: 150px;
 	height: fit-content;
 	padding-bottom: 10px;
-	/* color: #e0f7fa; */
 	font-size: 18px;
 	font-family: 'Poppins', sans-serif;
 	padding: 3px;
@@ -73,6 +73,25 @@ main {
 	justify-content: center;
 	align-items: center;
 
+}
+
+.sidebar-container {
+	position: absolute;
+	height: 100vh;
+	width: 200px;
+	left: 0px;
+	top: 60px;
+	z-index: 9999;
+	color: black;
+	background: rgba(225, 255, 0, 0.08);
+	box-shadow: 0px 1px 10px 0px #4b4d00;
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	border-radius: 8px;
+	border: 3px solid rgba(224, 247, 250, 0.18);
+	font-size: 18px;
+	font-family: 'Poppins', sans-serif;
+	transition: transform 0.4s ease, opacity 0.4s ease, visibility 0.4s;
 }
 
 .food-name {
